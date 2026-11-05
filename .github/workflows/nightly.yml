@@ -1,15 +1,11 @@
 name: 4diac IDE nightly build
 
 on:
-push:
+  push:
     branches: [ "ci/test-fix" ]
-schedule:
+  schedule:
     - cron: '0 2 * * *'
-workflow_dispatch:
-        branch: [develop]
-    with:
-        ref: ${{ github.sha }}
-
+  workflow_dispatch:
 
 permissions: {}
 
@@ -19,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        branch: [develop, release]
+        branch: [develop]
         java: [25]
     runs-on: ${{ matrix.os }}
     name: ${{ matrix.branch }} on ${{ matrix.os }} Java ${{ matrix.java }}
@@ -30,7 +26,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
-        ref: ${{ matrix.branch }}
+        ref: ${{ github.sha }}
 
     - name: Set up Java
       uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
