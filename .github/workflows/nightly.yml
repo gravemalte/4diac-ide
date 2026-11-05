@@ -2,7 +2,7 @@ name: 4diac IDE nightly build
 
 on:
 push:
-    branches: [ "ci/multi-platform-build" ]
+    branches: [ "ci/test-fix" ]
 schedule:
     - cron: '0 2 * * *'
 workflow_dispatch:
