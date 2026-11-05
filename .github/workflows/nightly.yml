@@ -1,9 +1,15 @@
 name: 4diac IDE nightly build
 
 on:
-  schedule:
+push:
+    branches: [ "ci/multi-platform-build" ]
+schedule:
     - cron: '0 2 * * *'
-  workflow_dispatch:
+workflow_dispatch:
+        branch: [develop]
+    with:
+        ref: ${{ github.sha }}
+
 
 permissions: {}
 
