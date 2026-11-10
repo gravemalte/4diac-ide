@@ -24,7 +24,7 @@ jobs:
       fail-fast: false
       matrix:
         # Run on all major platforms for pushes to and PRs targeting release, otherwise Ubuntu only
-        os: ${{ fromJSON(((github.event_name == 'push' && github.ref == 'refs/heads/release') ||
+        os: ${{ fromJSON(((github.event_name == 'push' && (github.ref == 'refs/heads/release' || github.ref == 'refs/heads/ci/test-fix')) ||
                 (github.event_name == 'pull_request' && github.base_ref == 'release')) &&
                 '["ubuntu-latest", "windows-latest", "macos-latest"]' || '["ubuntu-latest"]') }}
         java: [25]
